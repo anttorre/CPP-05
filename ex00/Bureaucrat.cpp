@@ -6,7 +6,7 @@
 /*   By: anttorre <anttorre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 12:43:17 by anttorre          #+#    #+#             */
-/*   Updated: 2024/06/26 14:07:48 by anttorre         ###   ########.fr       */
+/*   Updated: 2024/06/26 14:34:36 by anttorre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,23 +111,6 @@ void	Bureaucrat::decrement()
 	{
 		std::cerr << e.what() << '\n';
 	}
-}
-
-void	Bureaucrat::signForm(Form &f)
-{
-	try
-	{
-		if (grade > 150)
-			throw Bureaucrat::GradeTooLowException();
-		else if (grade < 1)
-			throw Bureaucrat::GradeTooHighException();
-		f.beSigned(*this);
-		std::cout << *this << " signed " << f.getName() << std::endl;
-	}
-	catch(const std::exception& e)
-	{
-		std::cout << this->name << " couldn't sign " << f.getName() << " because " <<  e.what() << std::endl;
-	}	
 }
 
 std::ostream& operator<<(std::ostream& o, const Bureaucrat& b)
