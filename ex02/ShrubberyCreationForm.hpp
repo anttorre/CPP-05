@@ -1,28 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   ShrubberyCreationForm.hpp                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: anttorre <anttorre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/24 12:57:25 by anttorre          #+#    #+#             */
-/*   Updated: 2024/06/26 17:52:02 by anttorre         ###   ########.fr       */
+/*   Created: 2024/06/26 17:49:25 by anttorre          #+#    #+#             */
+/*   Updated: 2024/06/26 18:20:13 by anttorre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Bureaucrat.hpp"
+#pragma once
+#include <iostream>
 #include "AForm.hpp"
-int main()
+
+class ShrubberyCreationForm : public AForm
 {
-	Bureaucrat	*b1 = new Bureaucrat("Antonio", 151);
-	Bureaucrat	*b2 = new Bureaucrat("Juan", 26);
-
-	b1->decrement();
-	b2->increment();
-	std::cout << "\n" << *b1 << "\n" << *b2 << std::endl;
-
-	std::cout << std::endl;
-
-	delete b1;
-	delete b2;
-}
+	private:
+		std::string target;
+		ShrubberyCreationForm();
+	public:
+		ShrubberyCreationForm(std::string target);
+		ShrubberyCreationForm(ShrubberyCreationForm &other);
+		~ShrubberyCreationForm();
+		ShrubberyCreationForm& operator=(ShrubberyCreationForm &other);
+		void execute(Bureaucrat const &executor) const;
+};
