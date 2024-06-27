@@ -6,7 +6,7 @@
 /*   By: anttorre <anttorre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 12:43:17 by anttorre          #+#    #+#             */
-/*   Updated: 2024/06/26 15:08:01 by anttorre         ###   ########.fr       */
+/*   Updated: 2024/06/27 12:46:09 by anttorre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,6 +128,19 @@ void	Bureaucrat::signForm(AForm &f)
 	{
 		std::cout << this->name << " couldn't sign " << f.getName() << " because " <<  e.what() << std::endl;
 	}	
+}
+
+void	Bureaucrat::executeForm(AForm const &form)
+{
+	try
+	{
+		form.execute(*this);
+		std::cout << this->getName() << " executed " << form.getName() << std::endl;
+	}
+	catch(const std::exception& e)
+	{
+		std::cout << this->getName() << " couldn't execute " << form.getName() << std::endl;
+	}
 }
 
 std::ostream& operator<<(std::ostream& o, const Bureaucrat& b)

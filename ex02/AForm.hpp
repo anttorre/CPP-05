@@ -6,7 +6,7 @@
 /*   By: anttorre <anttorre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/25 12:30:34 by anttorre          #+#    #+#             */
-/*   Updated: 2024/06/26 18:19:19 by anttorre         ###   ########.fr       */
+/*   Updated: 2024/06/27 12:32:39 by anttorre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,14 @@ class AForm
 			const char *what() const throw()
 			{
 				return "Grade too low.";
+			}
+	};
+	class FormNotSignedException : public std::exception
+	{
+		public:
+			const char *what() const throw()
+			{
+				return "Form isn't signed";
 			}
 	};
 };

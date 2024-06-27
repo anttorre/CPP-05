@@ -6,7 +6,7 @@
 /*   By: anttorre <anttorre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 11:57:16 by anttorre          #+#    #+#             */
-/*   Updated: 2024/06/26 15:07:49 by anttorre         ###   ########.fr       */
+/*   Updated: 2024/06/27 12:42:42 by anttorre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ class  Bureaucrat
 		void	increment();
 		void	decrement();
 		void	signForm(AForm &f);
+		void	executeForm(AForm const &form);
 		class  GradeTooHighException : public std::exception
 		{
 			public:
