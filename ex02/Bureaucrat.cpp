@@ -6,7 +6,7 @@
 /*   By: anttorre <anttorre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 12:43:17 by anttorre          #+#    #+#             */
-/*   Updated: 2024/06/27 12:46:09 by anttorre         ###   ########.fr       */
+/*   Updated: 2024/06/27 18:30:10 by anttorre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,6 @@ Bureaucrat::Bureaucrat(Bureaucrat& other)
 
 Bureaucrat::~Bureaucrat()
 {
-	std::cout << "Destructor Bureaucrat called\n";
 }
 
 Bureaucrat& Bureaucrat::operator=(Bureaucrat& other)
@@ -134,12 +133,14 @@ void	Bureaucrat::executeForm(AForm const &form)
 {
 	try
 	{
-		form.execute(*this);
-		std::cout << this->getName() << " executed " << form.getName() << std::endl;
+		if (form.execute(*this))
+			std::cout << this->getName() << " executed " << form.getName() << std::endl;
+		else
+			std::cout << this->getName() << " couldn't execute " << form.getName() << std::endl;
 	}
 	catch(const std::exception& e)
 	{
-		std::cout << this->getName() << " couldn't execute " << form.getName() << std::endl;
+		std::cout << e.what() << std::endl;
 	}
 }
 

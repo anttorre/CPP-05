@@ -1,30 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ShrubberyCreationForm.hpp                          :+:      :+:    :+:   */
+/*   RobotomyRequestForm.hpp                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: anttorre <anttorre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/26 17:49:25 by anttorre          #+#    #+#             */
-/*   Updated: 2024/06/27 15:24:25 by anttorre         ###   ########.fr       */
+/*   Created: 2024/06/27 13:52:21 by anttorre          #+#    #+#             */
+/*   Updated: 2024/06/27 17:40:21 by anttorre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 #include <iostream>
-#include <fstream>
 #include "AForm.hpp"
+#include <cstdlib>
 
-class ShrubberyCreationForm : public AForm
+class RobotomyRequestForm : public AForm
 {
 	private:
 		std::string target;
-		ShrubberyCreationForm();
+		RobotomyRequestForm();
 	public:
-		ShrubberyCreationForm(std::string target);
-		ShrubberyCreationForm(ShrubberyCreationForm &other);
-		~ShrubberyCreationForm();
-		ShrubberyCreationForm& operator=(ShrubberyCreationForm &other);
+		RobotomyRequestForm(std::string target);
+		RobotomyRequestForm(RobotomyRequestForm &other);
+		~RobotomyRequestForm();
+		RobotomyRequestForm& operator=(RobotomyRequestForm &other);
 		std::string getTarget() const;
 		bool execute(Bureaucrat const &executor) const;
 };

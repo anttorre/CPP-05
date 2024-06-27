@@ -15,7 +15,6 @@
 
 AForm::AForm() : name("Default AForm"), isSigned(false), gradeRequired(1), gradeToExecute(1)
 {
-	std::cout << "AForm Default constructor called\n";
 }
 
 AForm::AForm(std::string name, int gradeRequired, int gradeToExecute) : name(name), isSigned(false), gradeRequired(gradeRequired), gradeToExecute(gradeToExecute)
@@ -41,7 +40,6 @@ AForm::AForm(AForm &other) : name(other.name), isSigned(other.isSigned), gradeRe
 			throw AForm::GradeTooHighException();
 		else if (other.gradeRequired > 150)
 			throw AForm::GradeTooLowException();
-		std::cout << "AForm Copy constructor called\n";
 	}
 	catch(const std::exception& e)
 	{
@@ -51,7 +49,6 @@ AForm::AForm(AForm &other) : name(other.name), isSigned(other.isSigned), gradeRe
 
 AForm::~AForm()
 {
-	std::cout << "AForm Destructor called\n";
 }
 
 AForm& AForm::operator=(AForm &other)

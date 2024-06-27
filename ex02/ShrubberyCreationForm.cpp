@@ -6,7 +6,7 @@
 /*   By: anttorre <anttorre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:48:31 by anttorre          #+#    #+#             */
-/*   Updated: 2024/06/27 12:39:05 by anttorre         ###   ########.fr       */
+/*   Updated: 2024/06/27 18:27:16 by anttorre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,29 +34,39 @@ ShrubberyCreationForm& ShrubberyCreationForm::operator=(ShrubberyCreationForm &o
 	return *this;
 }
 
-void ShrubberyCreationForm::execute(Bureaucrat const &executor) const
+std::string ShrubberyCreationForm::getTarget() const
 {
+	return this->target;
+}
+
+bool ShrubberyCreationForm::execute(Bureaucrat const &executor) const
+{
+	bool execute = false;
 	try
 	{
-		if (executor.getGrade() > this->getGradeToExecute())
-			throw AForm::GradeTooLowException();
 		if (!this->getIsSigned())
 			throw AForm::FormNotSignedException();
-		std::ofstream out(this->target + "_shrubbery");
+		else if (executor.getGrade() > this->getGradeToExecute())
+			throw AForm::GradeTooLowException();
+		std::string name(this->target + "_shrubbery");
+		std::ofstream out(name.c_str());
 		out << "               ,@@@@@@@," << std::endl;
-    	out << "       ,,,.   ,@@@@@@/@@,  .oo8888o." << std::endl;
-    	out << "       ,&%%&%&&%,@@@@@/@@@@@@,8888\\88/8o" << std::endl;
-   		out << "   ,%&\\%&&%&&%,@@@\\@@@/@@@88\\88888/88'" << std::endl;
-    	out << "   %&&%&%&/%&&%@@\\@@/ /@@@88888\\88888'" << std::endl;
-    	out << "   %&&%/ %&%%&&@@\\ V /@@' `88\\8 `/88'" << std::endl;
-    	out << "   `&%\\ ` /%&'    |.|        \\ '|8'" << std::endl;
-    	out << "       |o|        | |         | |" << std::endl;
-    	out << "       |.|        | |         | |" << std::endl;
-    	out << "   .\\. \\/ ._\\//_/__/  ,\\_//__\\/.  \\_//__/_" << std::endl;
-    	out.close();
+		out << "       ,,,.   ,@@@@@@/@@,  .oo8888o." << std::endl;
+		out << "       ,&%%&%&&%,@@@@@/@@@@@@,8888\\88/8o" << std::endl;
+		out << "   ,%&\\%&&%&&%,@@@\\@@@/@@@88\\88888/88'" << std::endl;
+		out << "   %&&%&%&/%&&%@@\\@@/ /@@@88888\\88888'" << std::endl;
+		out << "   %&&%/ %&%%&&@@\\ V /@@' `88\\8 `/88'" << std::endl;
+		out << "   `&%\\ ` /%&'    |.|        \\ '|8'" << std::endl;
+		out << "       |o|        | |         | |" << std::endl;
+		out << "       |.|        | |         | |" << std::endl;
+		out << "   .\\. \\/ ._\\//_/__/  ,\\_//__\\/.  \\_//__/_" << std::endl;
+		out.close();
+		execute = true;
+		return execute;
 	}
 	catch(const std::exception& e)
 	{
 		std::cerr << e.what() << '\n';
+		return execute;
 	}
 }

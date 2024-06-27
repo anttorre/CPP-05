@@ -18,6 +18,9 @@ STD = -std=c++98
 
 SRCS =  AForm.cpp \
 		Bureaucrat.cpp \
+		ShrubberyCreationForm.cpp \
+		RobotomyRequestForm.cpp \
+		PresidentialPardonForm.cpp \
 		main.cpp
 
 OBJS = $(SRCS:.cpp=.o)

@@ -7,7 +7,7 @@
             "args": [
                 "-fdiagnostics-color=always",
                 "-g",
-                "../ex01/*.cpp",
+                "../ex02/*.cpp",
                 "-o",
                 "${fileDirname}/${fileBasenameNoExtension}"
             ],
