@@ -6,7 +6,7 @@
 /*   By: anttorre <anttorre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 12:43:17 by anttorre          #+#    #+#             */
-/*   Updated: 2024/06/26 14:34:36 by anttorre         ###   ########.fr       */
+/*   Updated: 2024/06/28 17:26:38 by anttorre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ Bureaucrat::Bureaucrat(std::string name, int grade) : name(name)
 	}
 }
 
-Bureaucrat::Bureaucrat(Bureaucrat& other)
+Bureaucrat::Bureaucrat(Bureaucrat& other) : name (other.name)
 {
 	if (this != &other)
 		*this = other;
@@ -52,7 +52,6 @@ Bureaucrat::Bureaucrat(Bureaucrat& other)
 
 Bureaucrat::~Bureaucrat()
 {
-	std::cout << "Destructor Bureaucrat called\n";
 }
 
 Bureaucrat& Bureaucrat::operator=(Bureaucrat& other)
@@ -61,11 +60,17 @@ Bureaucrat& Bureaucrat::operator=(Bureaucrat& other)
 	{
 		try
 		{
-			if (other.grade > 150)
-				throw Bureaucrat::GradeTooLowException();
-			else if (other.grade < 1)
-				throw Bureaucrat::GradeTooHighException();
 			this->grade = other.grade;
+			if (other.grade > 150)
+			{
+				this->grade = 150;
+				throw Bureaucrat::GradeTooLowException();
+			}
+			else if (other.grade < 1)
+			{
+				this->grade = 150;
+				throw Bureaucrat::GradeTooHighException();
+			}
 		}
 		catch(const std::exception& e)
 		{
@@ -125,7 +130,7 @@ std::ostream& operator<<(std::ostream& o, const Bureaucrat& b)
 	}
 	catch(const std::exception& e)
 	{
-		std::cerr << e.what() << '\n';
+		std::cerr << e.what();
 	}
 	return o;
 }
