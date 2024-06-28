@@ -6,7 +6,7 @@
 /*   By: anttorre <anttorre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 12:43:17 by anttorre          #+#    #+#             */
-/*   Updated: 2024/06/28 17:26:38 by anttorre         ###   ########.fr       */
+/*   Updated: 2024/06/28 17:32:21 by anttorre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,7 @@
 
 Bureaucrat::Bureaucrat() : name("Bureaucrat default")
 {
-	try
-	{
-		this->grade = 1;
-		if (grade > 150)
-			throw Bureaucrat::GradeTooLowException();
-		else if (grade < 1)
-			throw Bureaucrat::GradeTooHighException();
-	}
-	catch(const std::exception& e)
-	{
-		std::cerr << e.what() << std::endl;
-	}
+	this->grade = 1;
 }
 
 Bureaucrat::Bureaucrat(std::string name, int grade) : name(name)
@@ -33,10 +22,16 @@ Bureaucrat::Bureaucrat(std::string name, int grade) : name(name)
 	try
 	{
 		this->grade = grade;
-		if (grade > 150)
+		if (this->grade > 150)
+		{
+			this->grade = 150;
 			throw Bureaucrat::GradeTooLowException();
-		else if (grade < 1)
+		}
+		else if (this->grade < 1)
+		{
+			this->grade = 1;
 			throw Bureaucrat::GradeTooHighException();
+		}
 	}
 	catch(std::exception& e)
 	{
@@ -68,7 +63,7 @@ Bureaucrat& Bureaucrat::operator=(Bureaucrat& other)
 			}
 			else if (other.grade < 1)
 			{
-				this->grade = 150;
+				this->grade = 1;
 				throw Bureaucrat::GradeTooHighException();
 			}
 		}

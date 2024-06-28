@@ -6,7 +6,7 @@
 /*   By: anttorre <anttorre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 12:43:17 by anttorre          #+#    #+#             */
-/*   Updated: 2024/06/26 14:07:48 by anttorre         ###   ########.fr       */
+/*   Updated: 2024/06/28 17:29:02 by anttorre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ Bureaucrat::Bureaucrat(std::string name, int grade) : name(name)
 	}
 }
 
-Bureaucrat::Bureaucrat(Bureaucrat& other)
+Bureaucrat::Bureaucrat(Bureaucrat& other) : name(other.name)
 {
 	if (this != &other)
 		*this = other;
@@ -61,11 +61,11 @@ Bureaucrat& Bureaucrat::operator=(Bureaucrat& other)
 	{
 		try
 		{
+			this->grade = other.grade;
 			if (other.grade > 150)
 				throw Bureaucrat::GradeTooLowException();
 			else if (other.grade < 1)
 				throw Bureaucrat::GradeTooHighException();
-			this->grade = other.grade;
 		}
 		catch(const std::exception& e)
 		{
@@ -142,7 +142,7 @@ std::ostream& operator<<(std::ostream& o, const Bureaucrat& b)
 	}
 	catch(const std::exception& e)
 	{
-		std::cerr << e.what() << '\n';
+		std::cerr << e.what();
 	}
 	return o;
 }
