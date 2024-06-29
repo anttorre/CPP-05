@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Bureaucrat.cpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anttorre <anttorre@student.42.fr>          +#+  +:+       +#+        */
+/*   By: anttorre <anttorre@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 12:43:17 by anttorre          #+#    #+#             */
-/*   Updated: 2024/06/28 17:29:02 by anttorre         ###   ########.fr       */
+/*   Updated: 2024/06/29 13:51:53 by anttorre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,7 @@
 
 Bureaucrat::Bureaucrat() : name("Bureaucrat default")
 {
-	try
-	{
-		this->grade = 1;
-		if (grade > 150)
-			throw Bureaucrat::GradeTooLowException();
-		else if (grade < 1)
-			throw Bureaucrat::GradeTooHighException();
-	}
-	catch(const std::exception& e)
-	{
-		std::cerr << e.what() << std::endl;
-	}
+	this->grade = 1;
 }
 
 Bureaucrat::Bureaucrat(std::string name, int grade) : name(name)
@@ -33,10 +22,16 @@ Bureaucrat::Bureaucrat(std::string name, int grade) : name(name)
 	try
 	{
 		this->grade = grade;
-		if (grade > 150)
+		if (this->grade > 150)
+		{
+			this->grade = 150;
 			throw Bureaucrat::GradeTooLowException();
-		else if (grade < 1)
+		}
+		else if (this->grade < 1)
+		{
+			this->grade = 1;
 			throw Bureaucrat::GradeTooHighException();
+		}
 	}
 	catch(std::exception& e)
 	{
@@ -52,7 +47,6 @@ Bureaucrat::Bureaucrat(Bureaucrat& other) : name(other.name)
 
 Bureaucrat::~Bureaucrat()
 {
-	std::cout << "Destructor Bureaucrat called\n";
 }
 
 Bureaucrat& Bureaucrat::operator=(Bureaucrat& other)
@@ -63,9 +57,15 @@ Bureaucrat& Bureaucrat::operator=(Bureaucrat& other)
 		{
 			this->grade = other.grade;
 			if (other.grade > 150)
+			{
+				this->grade = 150;
 				throw Bureaucrat::GradeTooLowException();
+			}
 			else if (other.grade < 1)
+			{
+				this->grade = 1;
 				throw Bureaucrat::GradeTooHighException();
+			}
 		}
 		catch(const std::exception& e)
 		{
