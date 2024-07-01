@@ -6,7 +6,7 @@
 /*   By: anttorre <anttorre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 11:57:16 by anttorre          #+#    #+#             */
-/*   Updated: 2024/06/26 14:34:21 by anttorre         ###   ########.fr       */
+/*   Updated: 2024/07/01 14:58:50 by anttorre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,19 +34,13 @@ class  Bureaucrat
 		class  GradeTooHighException : public std::exception
 		{
 			public:
-				const char *what() const throw()
-				{
-					return "Grade too high.";
-				}
+				const char *what() const throw();
 		};
 
 		class GradeTooLowException : public std::exception
 		{
 			public:
-				const char *what() const throw()
-				{
-					return "Grade too low.";
-				}
+				const char *what() const throw();
 		};
 };
 
