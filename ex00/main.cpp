@@ -6,7 +6,7 @@
 /*   By: anttorre <anttorre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 12:57:25 by anttorre          #+#    #+#             */
-/*   Updated: 2024/07/01 15:20:38 by anttorre         ###   ########.fr       */
+/*   Updated: 2024/07/01 15:27:08 by anttorre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ int main()
 		std::cout << "b3 :" << *b3 <<std::endl;
 		*b3 = *b2;
 		std::cout << "b3 :" << *b3 <<std::endl;
-
 		std::cout << "b1: " << *b1 << "\n" << "b2: " << *b2 << std::endl;
 		b1->decrement();
 		b2->decrement();
