@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Form.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anttorre <anttorre@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: anttorre <anttorre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/25 12:54:25 by anttorre          #+#    #+#             */
-/*   Updated: 2024/06/29 13:28:59 by anttorre         ###   ########.fr       */
+/*   Updated: 2024/07/01 16:00:30 by anttorre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,43 +15,34 @@
 
 Form::Form() : name("Default Form"), isSigned(false), gradeRequired(1), gradeToExecute(1)
 {
-	std::cout << "Form Default constructor called\n";
 }
 
 Form::Form(std::string name, int gradeRequired, int gradeToExecute) : name(name), isSigned(false), gradeRequired(gradeRequired), gradeToExecute(gradeToExecute)
 {
-	try
-	{
-		if (gradeRequired <= 0)
-			throw Form::GradeTooHighException();
-		else if (gradeRequired > 150)
-			throw Form::GradeTooLowException();
-	}
-	catch(const std::exception& e)
-	{
-		std::cerr << e.what() << '\n';
-	}
+	if (this->gradeRequired < 1)
+		throw Form::GradeTooHighException();
+	else if (this->gradeRequired > 150)
+		throw Form::GradeTooLowException();
+	if (this->gradeToExecute < 1)
+		throw Form::GradeTooHighException();
+	else if (this->gradeToExecute > 150)
+		throw Form::GradeTooLowException();
 }
 
 Form::Form(Form &other) : name(other.name), isSigned(other.isSigned), gradeRequired(other.gradeRequired), gradeToExecute(other.gradeToExecute)
 {
-	try
-	{
-		if (other.gradeRequired < 1)
-			throw Form::GradeTooHighException();
-		else if (other.gradeRequired > 150)
-			throw Form::GradeTooLowException();
-		std::cout << "Form Copy constructor called\n";
-	}
-	catch(const std::exception& e)
-	{
-		std::cerr << e.what() << '\n';
-	}
+	if (other.gradeRequired < 1)
+		throw Form::GradeTooHighException();
+	else if (other.gradeRequired > 150)
+		throw Form::GradeTooLowException();
+	if (other.gradeToExecute < 1)
+		throw Form::GradeTooHighException();
+	else if (other.gradeToExecute > 150)
+		throw Form::GradeTooLowException();
 }
 
 Form::~Form()
 {
-	std::cout << "Form Destructor called\n";
 }
 
 Form& Form::operator=(Form &other)
@@ -98,4 +89,14 @@ std::ostream& operator<<(std::ostream& o, const Form &f)
 	o << "\n-----------------Form info-----------------\n";
 	o << "Form name: " << f.getName() << ".\nRequired grade: " << f.getGradeRequired() << ".\nGrade to execute: " << f.getGradeToExecute() << ".\nForm signed: " << sign;
 	return o;
+}
+
+const char * Form::GradeTooLowException::what() const throw()
+{
+	return "Grade too low.";
+}
+
+const char *Form::GradeTooHighException::what() const throw()
+{
+	return "Grade too high.";
 }

@@ -6,7 +6,7 @@
 /*   By: anttorre <anttorre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 12:57:25 by anttorre          #+#    #+#             */
-/*   Updated: 2024/07/01 15:27:08 by anttorre         ###   ########.fr       */
+/*   Updated: 2024/07/01 15:45:58 by anttorre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int main()
 	try
 	{
 		b1 = new Bureaucrat("Antonio", 145);
-		b2 = new Bureaucrat("Juan", 2);
+		b2 = new Bureaucrat("Juan", 1);
 		b3 = new Bureaucrat(*b1);
 		std::cout << "b3 :" << *b3 <<std::endl;
 		*b3 = *b2;

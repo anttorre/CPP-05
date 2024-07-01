@@ -6,7 +6,7 @@
 /*   By: anttorre <anttorre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 12:43:17 by anttorre          #+#    #+#             */
-/*   Updated: 2024/07/01 15:03:35 by anttorre         ###   ########.fr       */
+/*   Updated: 2024/07/01 15:45:27 by anttorre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,10 +75,6 @@ void	Bureaucrat::decrement()
 
 std::ostream& operator<<(std::ostream& o, const Bureaucrat& b)
 {
-	if (b.getGrade() > 150)
-		throw Bureaucrat::GradeTooLowException();
-	else if (b.getGrade() < 1)
-		throw Bureaucrat::GradeTooHighException();
 	o << b.getName() <<", bureaucrat grade " << b.getGrade() << ".";
 	return o;
 }

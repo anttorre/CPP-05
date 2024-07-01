@@ -6,7 +6,7 @@
 /*   By: anttorre <anttorre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/25 12:30:34 by anttorre          #+#    #+#             */
-/*   Updated: 2024/06/26 14:29:06 by anttorre         ###   ########.fr       */
+/*   Updated: 2024/07/01 15:44:42 by anttorre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,18 +39,12 @@ class Form
 	class GradeTooHighException : public std::exception
 	{
 		public:
-			const char *what() const throw()
-			{
-				return "Grade too high.";
-			}
+			const char *what() const throw();
 	};
 	class GradeTooLowException : public std::exception
 	{
 		public:
-			const char *what() const throw()
-			{
-				return "Grade too low.";
-			}
+			const char *what() const throw();
 	};
 };
 
